@@ -14,11 +14,10 @@ setup(name='subwrap',
     url="https://github.com/ravenac95/subwrap",
     license='MIT',
     platforms='Unix',
-    packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
+    py_modules=['subwrap'],
     include_package_data=True,
     zip_safe=False,
-    install_requires=[
-    ],
+    install_requires=[],
     entry_points={},
     classifiers=[
         'License :: OSI Approved :: MIT License',
