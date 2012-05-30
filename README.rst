@@ -47,7 +47,6 @@ handle for each subprocess. Just do the following::
 
     # The next line will output "Not as happy" to stdout
     response = subwrap.run(['false'], exit_handle=my_exit_handle)
-"""
 
 License
 -------
