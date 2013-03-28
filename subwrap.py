@@ -46,10 +46,10 @@ handle for each subprocess. Just do the following::
 import subprocess
 
 
-def run(sub_command, exit_handle=None):
+def run(sub_command, exit_handle=None, **options):
     """Run a command"""
     command = Command(sub_command, exit_handle)
-    return command.run()
+    return command.run(**options)
 
 
 class CommandError(Exception):
@@ -75,9 +75,12 @@ class Command(object):
         self._command = command
         self._exit_handle = exit_handle or default_exit_handle
 
-    def run(self):
+    def run(self, **options):
+        # Remove stdout and stderr
+        options.pop('stdout', None)
+        options.pop('stderr', None)
         process = subprocess.Popen(self._command, stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE)
+                stderr=subprocess.PIPE, **options)
         std_out, std_err = process.communicate()
         response = Response(self._command, std_out, std_err,
                 process.returncode)
